@@ -1,0 +1,54 @@
+<footer class="hip-footer">
+    <div class="left">
+      © {{ year }} HIP-MINI. All rights reserved.
+    </div>
+  
+
+        <!-- System info + links -->
+         <div class="right" *ngIf="isLoggedIn">
+            <span class="meta">
+                V{{ version }}
+                <span class="dot">•</span>
+                {{envService.getEnv()}}
+            </span>
+         </div>
+
+         <div class="right">
+      <a 
+         class="icon-link" 
+         href="http://github.com/" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         title="GitHub" 
+         aria-label="GitHub">
+        <span class="icon" aria-hidden="true">
+          <img src="icons/github.svg" alt="" />
+        </span>
+      </a>
+  
+      <a 
+         class="icon-link"
+         href="https://www.linkedin.com/"  
+         target="_blank"
+         rel="noopener noreferrer" 
+         title="LinkedIn" 
+         aria-label="LinkedIn">
+        <span class="icon" aria-hidden="true">
+          <img src="icons/linkedin.svg" alt="" />
+        </span>
+      </a>
+  
+      <a 
+         class="icon-link" 
+         href="https://x.com/"
+         target="_blank"
+         rel="noopener noreferrer"
+         title="Twitter" 
+         aria-label="X (Twitter)">
+        <span class="icon" aria-hidden="true">
+          <img src="icons/x.svg" alt="" />
+        </span>
+      </a>
+    </div>
+  </footer>
+  

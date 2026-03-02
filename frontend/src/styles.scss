@@ -1,0 +1,43 @@
+/* Global reset */
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+  
+    /* Enterprise system font stack */
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  
+    /* Internal portal workspace background */
+    background: #f6f7f9;
+  
+    color: #111;
+  }
+  
+  /* Links inherit color by default */
+  a {
+    color: inherit;
+  }
+  
+  /* Box sizing for predictable layouts */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /* Reusable list-page layout pattern */
+.list-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .list-table-area {
+    flex: 1;
+    min-height: 260px;
+  }
+  
+  .list-pagination-area {
+    margin-top: 8px;
+  }
+  

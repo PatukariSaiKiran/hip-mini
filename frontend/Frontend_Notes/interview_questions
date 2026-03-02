@@ -1,0 +1,210 @@
+1️⃣ Angular Services – “Why did you use services?”
+Interviewer may ask:
+
+Why do we use services in Angular?
+What did you put inside services?
+
+Your answer:
+
+In Angular, services are used to separate business logic from UI components.
+I used services mainly for:
+
+Calling backend REST APIs
+
+Managing shared state like authentication and environment selection
+
+Reusing logic across multiple components
+
+Example (what you actually did):
+
+AuthService → login, register, store token, expose user observable
+
+EnvService → manage DEV / TEST / PROD globally
+
+ApiService → fetch APIs, create API, filter APIs
+
+Why interviewers like this:
+
+👉 Shows clean architecture, maintainability, testability
+
+
+2️⃣ HttpClient – “How do you call backend APIs?”
+Interviewer may ask:
+
+How do you make REST API calls in Angular?
+
+Your answer:
+
+I use Angular’s HttpClient because it:
+
+Supports observables
+
+Automatically handles JSON
+
+Works well with interceptors and error handling
+
+Example explanation:
+
+I used GET, POST, PUT, DELETE depending on the operation.
+For example:
+
+POST for login and register
+
+GET for listing APIs and subscriptions
+
+Bonus line (very good):
+
+I never call HttpClient directly from components.
+
+
+3️⃣ Observables & BehaviorSubject – This is IMPORTANT
+Interviewer may ask:
+
+Why did you use Observables?
+What is BehaviorSubject?
+
+Your answer:
+
+Angular uses Observables for async data like HTTP responses and shared state.
+I used BehaviorSubject when I needed:
+
+The latest value immediately
+
+And future updates automatically
+
+Example (what you really did):
+
+user$ in AuthService
+
+env$ in EnvService
+
+For example, when the user logs in, the header, sidebar, and footer automatically update without page reload.
+
+One-liner:
+
+BehaviorSubject is useful when multiple components need the same reactive state.
+
+
+4️⃣ Router, RouterLink & Navigation – Routing mastery
+Interviewer may ask:
+
+How did you handle navigation in Angular?
+
+Your answer:
+
+I used Angular Router for client-side navigation.
+
+routerLink for template navigation
+
+router.navigate() for programmatic navigation (after login, logout, etc.)
+
+Example:
+
+After successful login, I navigated the user to the dashboard using router.navigate(['/app/manage-apis']).
+
+Route parameters:
+
+I used route parameters for pages like subscription details (/subscription/:id) and accessed them using ActivatedRoute.
+
+
+5️⃣ Guards (AuthGuard, AdminGuard) – Security question
+Interviewer may ask:
+
+How did you protect routes?
+
+Your answer:
+
+I used Angular Route Guards to restrict access based on authentication and role.
+
+AuthGuard → checks if user is logged in
+
+AdminGuard → checks if role is ADMIN
+
+This prevents unauthorized users from accessing protected routes even if they manually type the URL.
+
+Very strong line:
+
+Guards work at routing level, so protected components are never even created.
+
+6️⃣ ChangeDetectorRef – Advanced / senior signal
+Interviewer may ask:
+
+Have you ever used ChangeDetectorRef?
+
+Your answer:
+
+Yes. I used ChangeDetectorRef when UI updates didn’t reflect immediately due to async operations or zoneless optimizations.
+
+Example:
+
+After login or environment change, I manually triggered change detection using markForCheck() to ensure header and sidebar updated correctly.
+
+Important:
+
+I don’t use it everywhere — only when needed.
+
+7️⃣ Error Handling – Real-world question
+Interviewer may ask:
+
+How do you handle API errors?
+
+Your answer:
+
+I handle errors at subscription level and show user-friendly messages.
+I avoid exposing backend error details directly to users.
+
+Example:
+
+401 → “Invalid credentials or account doesn’t exist”
+
+0 (network error) → “Backend not reachable”
+
+I also stop loaders using finalize() to avoid infinite loading.
+
+8️⃣ Debugging in Angular – They LOVE this
+Interviewer may ask:
+
+How do you debug Angular applications?
+
+Your answer:
+
+I use multiple approaches:
+
+console.log() to inspect data flow
+
+Browser DevTools → Network tab to inspect API requests
+
+Check status codes (401, 403, 500)
+
+Angular error stack traces for routing or DI issues
+
+Bonus:
+
+I also use Postman to test APIs independently before integrating frontend.
+
+9️⃣ Postman & Swagger – Backend coordination
+Interviewer may ask:
+
+How do you test APIs before using them in Angular?
+
+Your answer:
+
+I use Postman to:
+
+Test request payloads
+
+Verify responses and status codes
+
+Validate authentication tokens
+
+If Swagger is available, I use it as API documentation and contract reference.
+
+🔟 Authentication Flow – End-to-end clarity
+Interviewer may ask:
+
+Explain your login flow.
+
+Your answer (clean & confident):
+
+User submits credentials → Angular service sends POST request → backend returns JWT → token stored securely → user state updated using BehaviorSubject → UI reacts automatically → user redirected.
+

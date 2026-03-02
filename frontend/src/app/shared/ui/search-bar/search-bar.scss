@@ -1,0 +1,47 @@
+/**
+ * SEARCH BAR STYLES
+ * Enterprise clean UI style
+ */
+
+ .search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 280px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    font-size: 14px;
+    opacity: 0.6;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px 32px 8px 32px; // space for icon + clear button
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s ease;
+  }
+  
+  .search-input:focus {
+    border-color: #1976d2;
+  }
+  
+  .clear-btn {
+    position: absolute;
+    right: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+  
+  .clear-btn:hover {
+    opacity: 1;
+  }
+  

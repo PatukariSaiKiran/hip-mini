@@ -1,0 +1,315 @@
+<!-- 
+Enterprise Create API wizard
+Structure:
+- Page header
+- Alerts
+- 4-step reactive form
+-Footer actions (Back / Next / Submit) 
+-->
+
+<section class="create-api">
+    <!-- 
+    PAGE Header
+  purpose:
+  show page title
+  show current env from form
+   
+    -->
+
+<div class="page-head">
+    <div>
+        <h2>Create API</h2>
+        <p>
+            Create a new API. It will remain in <b>DRAFT</b> status until approved.
+        </p>
+    </div>
+
+    <!-- env badge "syncs with global header env" -->
+     <div class="env-badge">
+        ENV:
+        <span class="pill">
+            {{ form.controls.environment.value}}
+        </span>
+     </div>
+</div>
+
+<!-- for erro or success alerts -->
+ <div class="alert alert--error" *ngIf="error">
+    <!-- *ngIf is a structural directive that conditionally renders or removes element from the DOM -->
+    {{ error }}
+ </div>
+
+ <div class="alert alert--success" *ngIf="success">
+    {{ success }}
+
+ 
+ <!-- Purpose:
+  - Show generated API ID
+  - Provide copy functionality 
+ -->
+  <div class="created-id" *ngIf="createdApiId">
+    <span class="create-api__label">API ID:</span>
+    
+    <span class="created-id__value">
+        <!--Interpolation {{ }} is used to bind and display component data inside the template.   -->
+        {{ createdApiId}}
+    </span>
+
+    <!-- copy button
+     title => native tooltip
+     click => calls copyApiID()
+     type="submit" triggers form submission, while
+     type="button" is used for custom actions without submmiting the form.
+     event binding is used to listen to DOM events and trigger component methods.
+     -->
+
+     <button 
+       type="button"
+       class="copy-btn"
+       title="Copy API ID"
+       (click)="copyApiId()"
+       >
+       <img src="icons/copy.svg" alt=""/>
+    </button>
+  </div>
+</div>
+
+<!-- Form Container -->
+ <!-- Property binding [] is used to bind component values to DOM properties
+    DOM = Document Object Model, is a tree structure representation of your HTML page inside the browser.
+    Example: <section>
+        <h2>Create API</h2>
+        <input type="text" />
+        </section>
+    Browser converts it into something like:
+     Document
+       └── section
+           ├── h2
+           └── input
+
+    formGroup binds a reactive form instance from the component to template. 
+    formControlNmae binds a form control from the formGroup  to an input field.
+ -->
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-wrapper">
+
+    <div class="step-head">
+        <div>
+            Step {{ currentStep }} of {{ totalSteps }}
+        </div>
+
+        <div class="progress">
+            <div 
+             class="progress__bar"
+             [style.width.%]="(currentStep / totalSteps) * 100">
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 1- basics -->
+     <div *ngIf="currentStep === 1" class="grid">
+
+        <!--  API Name -->
+          <div class="field">
+            <label>
+                API Name <span class="req">*</span>
+                <img src="icons/info.svg"
+                     class="tooltip-icon"
+                     title="Human readable name shown in portal"
+                     alt="" />
+            </label>
+
+            <input type="text" formControlName="name" />
+
+            <!-- Validation shown only if touched -->
+             <div class="error-msg"
+              *ngIf="form.controls.name.touched && form.controls.name.invalid">
+              API Name required (min 3 chars).
+             </div>
+          </div>
+
+
+         <!-- Summary ID -->
+          <div class="field">
+            <label>
+                Summary Id <span class="req">*</span>
+                <img src="icons/info.svg"
+                class="tooltip-icon"
+                title="Short unique identifier used for grouping"
+                alt="" />
+            </label>
+
+            <input type="text" formControlName="summaryId" />
+
+            <div class="error-msg"
+              *ngIf="form.controls.summaryId.touched && form.controls.summaryId.invalid">
+              Summary ID required.
+            </div>
+          </div>
+
+          <!-- Environemnt -->
+           <div class="field">
+            <label>
+              Environemnt <span class="req">*</span>
+              <img src="icons/info.svg"
+                   class="tooltip-icon"
+                   title="Selected Environemnt (DEV / TEST / PROD )"
+                   alt="" />
+            </label>
+
+            <select formControlName="environment">
+                <option *ngFor="let e of envOptions" [value]="e">
+                    {{ e }}
+                </option>
+            </select>
+           </div>
+           <!-- Version -->
+            <div class="field">
+                <label>
+                    Version <span class="req">*</span>
+                    <img src="icons/info.svg"
+                         class="tooltip-icon"
+                         title="Default v1. Increase on breaking changes"
+                         alt="" />
+                </label>
+
+                <input type="text" formControlName="version" />
+            </div>
+     </div>
+
+     <!-- Step 2 - Technical -->
+      <div *ngIf="currentStep === 2" class="grid">
+
+        <div class="field">
+            <label>
+                Base Path
+                <img src="icons/info.svg"
+                     class="tooltip-icon"
+                     title="APi base route (e.g. /orders/tracking)"
+                     alt="" />
+            </label>
+            <input type="text" formControlName="basePath" />
+        </div>
+        <div class="field">
+            <label>
+                Tags
+                <img src="icons/info.svg"
+                     class="tooltip-icon"
+                     title="Comma Separated values"
+                     alt=""  />
+            </label>
+            <input type="text" formControlName="tags" />
+        </div>
+        
+        <div class="field full">
+            <label>
+                Description
+                <img src="icons/info.svg" 
+                     class="tooltip-icon"
+                     title="Explain what this API does"
+                     alt="" />
+            </label>
+            <textarea rows="4" formControlName="description"></textarea>
+        </div>
+      </div>
+    
+      <!-- Step 3 - Governance -->
+       <div *ngIf="currentStep === 3" class="grid">
+
+        <div class="field">
+            <label>Owner Team *</label>
+            <input type="text" formControlName="ownerTeam" />
+        </div>
+
+        <div class="field">
+            <label>Contact Email</label>
+            <input type="email" formControlName="contactEmail">
+        </div>
+
+        <div class="field">
+            <label>Visibility *</label>
+            <select formControlName="visibility">
+                <option value="INTERNAL">INTERNAL</option>
+                <option value="PUBLIC">PUBLIC</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Criticality *</label>
+            <select formControlName="criticality">
+                <option value="LOW">LOW</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HIGH">HIGH</option>
+            </select>
+        </div>
+       </div>
+
+       <!-- Step 4 Review -->
+
+       <div *ngIf="currentStep === 4" class="review">
+
+        <div class="review-row">
+            <span>API Name</span>
+            <span>{{ form.controls.name.value }}</span>
+        </div>
+
+        <div class="review-row">
+            <span>Summary ID</span>
+            <span>{{ form.controls.summaryId.value }}</span>
+        </div>
+       
+        <div class="review-row">
+            <span>Environment</span>
+            <span class="pill">
+                {{ form.controls.environment.value }}
+            </span>
+        </div>
+       </div>
+
+       <div class="actions">
+ 
+        <button 
+          *ngIf="currentStep === 1"
+          type="button"
+          class="btn ghost"
+          (click)="cancel()">
+          Cancel
+        </button>
+
+
+         <!-- STEP 2 & 3 -->
+         <button type="button"
+                 *ngIf="currentStep > 1 && currentStep < totalSteps"
+                 type="button"
+                 class="btn ghost"
+                 (click)="prevStep()">
+            Back
+            </button>
+
+            <button
+            *ngIf="currentStep < totalSteps"
+            type="button"
+            class="btn primary"
+            (click)="nextStep()">
+            Next
+           </button>
+
+            <!-- step 4 -->
+             <button
+              *ngIf="currentStep === totalSteps"
+              type="button"
+              class="btn ghost"
+              (click)="prevStep()">
+              Back
+            </button>
+
+            <button
+             *ngIf="currentStep === totalSteps"
+             type="submit"
+             class="btn primary">
+             Submit
+            </button>
+
+       </div>
+</form>
+</section>

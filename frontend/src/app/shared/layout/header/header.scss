@@ -1,0 +1,137 @@
+.hip-header {
+    height: 64px;
+    padding: 0 20px;
+    background: transparent;
+    border-bottom: 1px solid #e9e9ee;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  
+  /* Brand (left side) */
+  .brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    min-width: 200px;
+  }
+  
+  .brand__logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  
+  .brand__tagline {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+  }
+  
+  /* Actions (right side) */
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .actions__link {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+  
+  .actions__link:hover {
+    background: #f2f3f5;
+  }
+  
+  .actions__button {
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #111;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .actions__button:hover {
+    opacity: 0.92;
+  }
+  
+  /* Responsive: on small screens, keep it neat */
+  @media (max-width: 520px) {
+    .hip-header {
+      height: auto;
+      padding: 12px 16px;
+      align-items: flex-start;
+    }
+  
+    .brand {
+      min-width: unset;
+    }
+  
+    .actions {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
+
+  .env {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid #e9e9ee;
+    border-radius: 10px;
+    background: #f9fafb;
+  }
+  
+  .env__label {
+    font-size: 11px;
+    color: #666;
+    font-weight: 600;
+  }
+  
+  .env__select {
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .user_name {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  
+  .user_role {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    background: #eef2ff;
+    color: #3730a3;
+  }
+  
+  .user_role.admin {
+    background: #ecfdf3;
+    color: #067647;
+  }
+  .brand {
+    cursor: pointer;
+  }
+  
+  
+  

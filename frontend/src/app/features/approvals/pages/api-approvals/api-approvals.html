@@ -1,0 +1,80 @@
+<!--
+  API APPROVALS PAGE (Admin)
+  PURPOSE:
+  - Show DRAFT APIs by default (need action)
+  - Admin can search + filter by status
+  - Admin can approve/reject (only when status is DRAFT)
+  - Pagination is server-side (page/limit sent to backend)
+-->
+
+<section class="api-approvals" class="list-page">
+
+    <!-- Page Header -->
+    <div class="page-head">
+      <div>
+        <h2>API Approvals</h2>
+        <p>Review APIs and approve or reject new API requests.</p>
+      </div>
+    </div>
+  
+    <!-- Toolbar: Search + Status filter -->
+    <div class="toolbar">
+  
+      <!-- Search bar (shared UI component) -->
+      <app-search-bar
+        [placeholder]="'Search by API ID, Name, Summary ID...'"
+        (search)="onSearch($event)"
+      ></app-search-bar>
+  
+      <!-- Status filter (shared UI component) -->
+      <app-status-filter
+        [label]="'Status'"
+        [value]="'DRAFT'"
+        [options]="[
+          { label: 'Draft', value: 'DRAFT' },
+          { label: 'Approved', value: 'ACTIVE' },
+          { label: 'Rejected', value: 'REJECTED' },
+          { label: 'All', value: 'ALL' }
+        ]"
+        (valueChange)="onStatusChange($event)"
+      ></app-status-filter>
+  
+    </div>
+  
+    <!-- Data Table Grid (shared UI component) -->
+    <div class="list-table-area">
+    <app-data-table
+      [loading]="loading"
+      [error]="error"
+      [rows]="apis"
+      [columns]="[
+        { key: 'name', label: 'Name', type: 'text', width: '240px' },
+        { key: 'summaryId', label: 'Summary ID', type: 'text', width: '140px' },
+        { key: 'version', label: 'Version', type: 'text', width: '80px' },
+        { key: 'status', label: 'Status', type: 'status', width: '120px' },
+        { key: 'createdAt', label: 'Created', type: 'date', width: '190px' }
+      ]"
+      [actions]="[
+        { id: 'view', label: 'View' },
+        { id: 'approve', label: 'Approve', showWhen: showDraftOnly },
+        { id: 'reject', label: 'Reject', danger: true, showWhen: showDraftOnly }
+      ]"
+      (actionClick)="onTableAction($event)"
+    ></app-data-table>
+</div>
+
+
+    <!-- Pagination (shared UI component) -->
+    <div class="list-pagination-area">
+    <app-pagination
+      [total]="total"
+      [page]="page"
+      [limit]="limit"
+      [showLimit]="true"
+      (pageChange)="onPageChange($event)"
+      (limitChange)="onLimitChange($event)"
+    ></app-pagination>
+</div>
+
+  </section>
+  

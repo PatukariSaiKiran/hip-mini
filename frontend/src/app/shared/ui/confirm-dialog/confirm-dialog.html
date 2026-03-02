@@ -1,0 +1,31 @@
+<!-- Purpose: Render nothing unless dialog is open -->
+<div *ngIf="isOpen" class="overlay" (click)="backdropClick()">
+    <!-- stopPropagation => click inside modal should not trigger backdrop click -->
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <div class="modal__title">
+          {{ req?.options?.title || 'Confirm' }}
+        </div>
+      </div>
+  
+      <div class="modal__body">
+        {{ req?.options?.message }}
+      </div>
+  
+      <div class="modal__footer">
+        <button type="button" class="btn btn--ghost" (click)="cancel()">
+          {{ req?.options?.cancelText || 'Cancel' }}
+        </button>
+  
+        <button
+          type="button"
+          class="btn"
+          [class.btn--danger]="req?.options?.danger"
+          (click)="confirm()"
+        >
+          {{ req?.options?.confirmText || 'Confirm' }}
+        </button>
+      </div>
+    </div>
+  </div>
+  

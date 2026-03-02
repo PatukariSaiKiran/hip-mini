@@ -1,0 +1,22 @@
+.private-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  /*  remove overflow:hidden */
+}
+
+/*  FIX: sidebar must NOT grow */
+app-sidebar {
+  flex: 0 0 280px;  /* fixed width */
+  width: 280px;
+}
+
+/*  FIX: content must be allowed to shrink inside flex */
+.private-content {
+  flex: 1;
+  min-width: 0;        /* ✅ very important in flex */
+  background: #f8fafc;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

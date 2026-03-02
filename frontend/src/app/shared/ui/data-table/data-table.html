@@ -1,0 +1,110 @@
+<!--
+  DATA TABLE GRID
+  This table is generic and reusable.
+  Parent controls:
+  - columns
+  - rows
+  - actions
+  - loading/error/empty
+-->
+
+<div class="dt-wrap">
+
+    <!-- Loading -->
+    <div class="dt-state" *ngIf="loading">
+      Loading...
+    </div>
+  
+    <!-- Error -->
+    <div class="dt-state dt-state--error" *ngIf="!loading && error">
+      {{ error }}
+    </div>
+  
+    <!-- Table -->
+    <div class="dt-table" *ngIf="!loading && !error">
+  
+      <!-- Empty -->
+      <div class="dt-state" *ngIf="rows.length === 0">
+        {{ emptyMessage }}
+      </div>
+  
+      <!-- Grid -->
+      <table *ngIf="rows.length > 0">
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns" [style.width]="col.width || null">
+              {{ col.label }}
+            </th>
+  
+            <!-- Actions header -->
+            <th *ngIf="actions.length > 0" class="dt-actions-th">
+              Actions
+            </th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let row of rows">
+  
+            <!-- Cells -->
+            <td *ngFor="let col of columns">
+  
+              <!-- Text (default) -->
+              <ng-container *ngIf="!col.type || col.type === 'text'">
+                {{ safeText(getCellValue(row, col.key)) }}
+              </ng-container>
+  
+              <!-- Status -->
+              <ng-container *ngIf="col.type === 'status'">
+                <span class="pill" [attr.data-status]="safeText(getCellValue(row, col.key))">
+                  {{ safeText(getCellValue(row, col.key)) }}
+                </span>
+              </ng-container>
+  
+              <!-- Date -->
+              <ng-container *ngIf="col.type === 'date'">
+                {{ formatDate(getCellValue(row, col.key)) }}
+              </ng-container>
+  
+              <!-- Tags -->
+              <ng-container *ngIf="col.type === 'tags'">
+                <ng-container *ngIf="getTags(getCellValue(row, col.key)).length === 0">
+                  -
+                </ng-container>
+  
+                <div class="tags" *ngIf="getTags(getCellValue(row, col.key)).length > 0">
+                  <span class="tag" *ngFor="let t of getTags(getCellValue(row, col.key)) | slice:0:2">
+                    {{ t }}
+                  </span>
+  
+                  <span class="tag tag--more" *ngIf="getTags(getCellValue(row, col.key)).length > 2">
+                    +{{ getTags(getCellValue(row, col.key)).length - 2 }}
+                  </span>
+                </div>
+              </ng-container>
+  
+            </td>
+  
+            <!-- Actions column -->
+            <td *ngIf="actions.length > 0" class="dt-actions-td">
+              <button
+                *ngFor="let a of actions"
+                type="button"
+                class="act-btn"
+                [class.act-btn--danger]="a.danger"
+                [title]="a.label"
+                [attr.aria-label]="a.label"
+                (click)="onAction(a.id, row)"
+                [hidden]="!isActionVisible(a, row)"
+              >
+                {{ a.id | uppercase }}
+              </button>
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+  
+    </div>
+  </div>
+  

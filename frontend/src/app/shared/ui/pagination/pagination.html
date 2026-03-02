@@ -1,0 +1,63 @@
+<!--
+  PAGINATION COMPONENT
+  PURPOSE:
+  - Show range text (Showing 1–10 of 57)
+  - Prev/Next buttons
+  - Page number buttons
+  - Optional limit dropdown
+-->
+
+<div class="pagination">
+
+    <!-- Left: range text -->
+    <div class="range">
+      {{ rangeText }}
+    </div>
+  
+    <!-- Middle: buttons -->
+    <div class="controls">
+  
+      <button
+        type="button"
+        class="btn"
+        [disabled]="isFirst"
+        (click)="goPrev()"
+      >
+        Prev
+      </button>
+  
+      <button
+        type="button"
+        class="btn page-btn"
+        *ngFor="let p of pageButtons"
+        [class.active]="p === page"
+        (click)="goTo(p)"
+      >
+        {{ p }}
+      </button>
+  
+      <button
+        type="button"
+        class="btn"
+        [disabled]="isLast"
+        (click)="goNext()"
+      >
+        Next
+      </button>
+  
+    </div>
+  
+    <!-- Right: limit selector -->
+    <div class="limit" *ngIf="showLimit">
+      <span class="limit-label">Rows:</span>
+  
+      <!-- strict template safe: use #sel not $event.target -->
+      <select #sel class="limit-select" [value]="limit" (change)="onLimitSelect(+sel.value)">
+        <option *ngFor="let opt of limitOptions" [value]="opt">
+          {{ opt }}
+        </option>
+      </select>
+    </div>
+  
+  </div>
+  

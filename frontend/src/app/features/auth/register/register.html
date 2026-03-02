@@ -1,0 +1,49 @@
+<section class="auth">
+    <div class="panel">
+      <div class="head">
+        <h1 class="title">Create Account</h1>
+        <p class="subtitle">Register to access the API management portal.</p>
+      </div>
+  
+      <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+        <label class="field">
+          <span class="label">Full Name</span>
+          <input class="input" 
+          type="text" 
+          placeholder="Your name" 
+          formControlName = "name"
+          />
+        </label>
+  
+        <label class="field">
+          <span class="label">Email</span>
+          <input class="input" 
+          type="email" 
+          placeholder="you@company.com" 
+          formControlName="email"
+          />
+        </label>
+  
+        <label class="field">
+          <span class="label">Password</span>
+          <input class="input"
+           type="password"
+           placeholder="Create password" 
+           formControlName = "password"
+            />
+        </label>
+
+        <!--  Feedback mesages -->
+          <p *ngIf="success" class="success">{{success}}</p>
+          <p *ngIf="error" class="error">{{error}}</p>
+
+        <button class="btn primary" type="submit" [disabled]="loading">{{ loading ? 'Creating account...' : 'Create Account'}}</button>
+  
+        <div class="meta">
+          <span>Already have an account?</span>
+          <a class="link" routerLink="/login">Login</a>
+        </div>
+      </form>
+    </div>
+  </section>
+  

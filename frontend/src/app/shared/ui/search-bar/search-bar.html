@@ -1,0 +1,35 @@
+<!--
+  SEARCH BAR COMPONENT
+  PURPOSE:
+  - Generic reusable search input
+  - Emits value to parent component
+-->
+
+<div class="search-bar">
+
+    <!-- Search Icon -->
+    <span class="search-icon">
+      🔍
+    </span>
+  
+    <!-- Input Field -->
+    <input
+      type="text"
+      class="search-input"
+      [placeholder]="placeholder"
+      [value]="value"
+      (input)="onInput($event.target.value)"
+    />
+  
+    <!-- Clear Button (only visible if text exists) -->
+    <button
+      *ngIf="value"
+      type="button"
+      class="clear-btn"
+      (click)="clear()"
+    >
+      ✖
+    </button>
+  
+  </div>
+  

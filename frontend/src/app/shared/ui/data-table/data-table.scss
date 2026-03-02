@@ -1,0 +1,130 @@
+.dt-wrap {
+    width: 100%;
+  }
+  
+  .dt-state {
+    padding: 14px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #444;
+    background: #fafafa;
+  }
+  
+  .dt-state--error {
+    border-color: #f1c2c2;
+    background: #fff5f5;
+    color: #a11;
+  }
+  
+  .dt-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .dt-table thead th {
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 12px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+  }
+  
+  .dt-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #efefef;
+    font-size: 13px;
+    color: #333;
+    vertical-align: top;
+  }
+  
+  .dt-table tbody tr:hover td {
+    background: #fcfcfc;
+  }
+  
+  .dt-actions-th,
+  .dt-actions-td {
+    width: 180px;
+    text-align: right;
+  }
+  
+  .dt-actions-td {
+    white-space: nowrap;
+  }
+  
+  .act-btn {
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 6px;
+    transition: background 0.15s ease, border 0.15s ease;
+  }
+  
+  .act-btn:hover {
+    background: #f5f5f5;
+  }
+  
+  .act-btn--danger {
+    border-color: #f1c2c2;
+  }
+  
+  .act-btn--danger:hover {
+    background: #fff1f1;
+  }
+  
+  .pill {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    border: 1px solid #dcdcdc;
+    background: #fff;
+  }
+  
+  /* Optional: status-based styling (simple) */
+  .pill[data-status="DRAFT"] {
+    border-color: #ffe08a;
+    background: #fff8dd;
+  }
+  
+  .pill[data-status="ACTIVE"] {
+    border-color: #bfe7c5;
+    background: #effaf1;
+  }
+  
+  .pill[data-status="REJECTED"] {
+    border-color: #f1c2c2;
+    background: #fff1f1;
+  }
+  
+  .pill[data-status="DELETED"] {
+    border-color: #ddd;
+    background: #f5f5f5;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid #e5e5e5;
+    background: #fafafa;
+  }
+  
+  .tag--more {
+    opacity: 0.75;
+  }
+  

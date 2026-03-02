@@ -1,0 +1,11 @@
+.public-shell {
+    min-height: 100vh;        /* full viewport height */
+    display: flex;
+    flex-direction: column;  /* vertical layout */
+  }
+  
+  .public-content {
+    flex: 1;                 /* takes remaining space */
+    padding: 24px;
+  }
+  

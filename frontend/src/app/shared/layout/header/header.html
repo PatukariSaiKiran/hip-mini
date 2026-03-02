@@ -1,0 +1,47 @@
+<header class="hip-header">
+    <!-- LEFT: Brand -->
+     <a class="brand" (click)="onBrandClick()" role="button" aria-label="Go to home">
+        <div class="brand_logo">HIP-MINI</div>
+        <div class="brand_tagline">Internal API Management Portal</div>
+     </a>
+
+     <!-- Right: Public actions -->
+      <nav class="actions" aria-label="Header actions">
+        <ng-container *ngIf="!isLoggedIn">
+       <a class="actions__link" routerLink="/login">Login</a>
+       <a class="actions__button" routerLink="/register">Sign up</a>
+    </ng-container>
+
+    <!-- Private actions -->
+     <!-- ng-container is angular 'wapper' that does not create any html element in browser
+      It used only to apply anhular logic *ngIf, *ngFor, without adding extra <div> -->
+     <ng-container *ngIf="isLoggedIn && user as u">
+        <!-- Env -->
+         <div class="env">
+            <span class="env_label">ENV</span>
+            <select 
+             class="env_select"
+             [value]="env"
+             (change)="onEnvChange($any($event.target).value)"
+             >
+             <!-- here $any angular templates are strongly types, and sometimes it complains that 
+              target might not have .value. means "trust me, treat this as any type." -->
+            <option *ngFor="let e of envOptions" [value]="e">
+                {{e}}
+            </option>
+            </select>
+         </div>
+
+         <div class="user">
+            <span class="user_name">{{u.name}}</span>
+            <span class="user_role" [class.admin]="u.role === 'ADMIN'">
+                {{u.role}}
+            </span>
+         </div>
+
+         <button class="actions_link" type="button" (click)="logout()">
+            Logout
+         </button>
+     </ng-container>
+      </nav>
+</header>

@@ -1,0 +1,182 @@
+.sidebar {
+    width: 248px;
+    padding: 14px;
+    border-right: 1px solid #e9e9ee;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  
+    box-sizing: border-box;
+    overflow: visible;         /*  stops weird overflow */
+    transition: width 0.25s ease;
+    height: 100%;
+    min-height: calc(100vh - 120px);
+  }
+  /* Toggle button */
+.sidebar__toggle {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-bottom: 8px;
+  }
+  
+  .sidebar__toggle img {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s ease;
+  }
+  
+  /* rotate when collapsed */
+  .sidebar__toggle img.rotated {
+    transform: rotate(180deg);
+  }
+  
+  /* Collapsed state */
+  .sidebar--collapsed {
+    width: 72px;
+    padding: 14px 10px;       /* ✅ tighter padding */
+  }
+  
+  /* Hide top text when collapsed */
+.sidebar--collapsed .sidebar__title,
+.sidebar--collapsed .env-badge,
+.sidebar--collapsed .group__label {
+  display: none;
+}
+  /*  Hide arrow in collapsed (otherwise it floats) */
+.sidebar--collapsed .arrow {
+    display: none;
+  }
+ /* Center the dashboard group icon */
+.sidebar--collapsed .group {
+    justify-content: center;  
+    padding: 10px;            
+  }
+  
+  .sidebar--collapsed .group__left {
+    gap: 0;
+    justify-content: center;
+  }
+  
+  /* Completely hide the menu container in collapsed */
+  .sidebar--collapsed .menu {
+    display: none;
+  }
+  /* Top area */
+  .sidebar__top {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .sidebar__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+  }
+  
+  /* ENV badge */
+  .env-badge {
+    font-size: 12px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .env-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+  }
+  
+  /* Dashboard group header */
+  .group {
+    width: 100%;
+    border: 1px solid #e9e9ee;
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px 12px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .group:hover {
+    background: #f7f7f8;
+  }
+  
+  .group__left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .group__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+  }
+  
+  /* Icons */
+  .icon img {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  
+  .arrow {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+  }
+  
+  .arrow img {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  
+  .arrow--open {
+    transform: rotate(180deg);
+  }
+  
+  /* Menu items */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .menu__item {
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+  
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+  }
+  
+  .menu__item:hover {
+    background: #f2f3f5;
+    border-color: #e9e9ee;
+  }
+  
+  /* Active route highlight */
+  .menu__item.active {
+    background: #111;
+    color: #fff;
+  }
+  

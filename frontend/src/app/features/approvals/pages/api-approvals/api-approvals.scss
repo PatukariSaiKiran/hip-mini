@@ -1,0 +1,66 @@
+/**
+ * API APPROVALS PAGE STYLES
+ * Enterprise clean layout
+ */
+
+ .api-approvals {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  
+  .page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .page-head h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .page-head p {
+    margin: 4px 0 0 0;
+    font-size: 13px;
+    color: #666;
+  }
+  
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  /* Make search take more space */
+  .toolbar app-search-bar {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  /* Status filter fixed width */
+  .toolbar app-status-filter {
+    width: 180px;
+  }
+  
+
+  app-data-table {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .table-area {
+    flex: 1;
+    min-height: 260px; /* keeps layout stable even with few rows */
+    display: block;
+  }
+  
+  .pagination-area {
+    margin-top: 8px;
+  }
+  

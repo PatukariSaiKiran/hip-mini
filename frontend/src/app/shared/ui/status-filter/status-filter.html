@@ -1,0 +1,15 @@
+<div class="status-filter">
+    <label class="filter-label">{{ label }}</label>
+  
+    <select
+      #sel
+      class="filter-select"
+      [value]="value"
+      (change)="onChange(sel.value)"
+    >
+      <option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+  

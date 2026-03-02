@@ -1,0 +1,25 @@
+Interview lines
+
+“I use Reactive Forms because they are scalable, testable, and keep validation logic in TypeScript, not scattered across HTML.”
+
+“Reactive Forms are best when the form is complex, has multi-step validation, dynamic fields, or needs strong control over state.”
+
+“They provide full control over value changes, validators, and form status, which is important for enterprise applications.”
+
+ngOnInit - i use OnINit to run intialization logic once the component is fully ready.
+
+constructor: should only inject dependencies, while ngOnInit is the correct plaze for subscriptions, API Calls, and form intialization.
+
+"OnInit ensures that angular has finished setting up the component before we execute logic."
+
+can we write ngOnInit without implements OnInit?
+yes, angular will still call it.
+then why still use it?
+because: it is self-documenting
+it improves code readability
+its considered enterprise best practice
+
+interview line:
+Even though angular will call ngOnInt without the interface,  I still implement OnInit for clarity and maintainability.
+
+ngOnDestory() : prevent memory leaks in long-running apps

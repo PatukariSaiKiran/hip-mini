@@ -1,0 +1,82 @@
+<aside class="sidebar"  [class.sidebar--collapsed]="isCollapsed" aria-label="Sidebar navigation">
+     <!-- Collapse toggle button -->
+<button
+  class="sidebar__toggle"
+  type="button"
+  (click)="toggleSidebar()"
+  aria-label="Toggle sidebar"
+>
+  <img
+    src="icons/chevron-left.svg"
+    alt=""
+    [class.rotated]="isCollapsed"
+  />
+</button>
+
+    <!-- Top -->
+    <div class="sidebar__top">
+      <div class="sidebar__title">Navigation</div>
+  
+      <!-- ENV Badge -->
+      <div class="env-badge" aria-label="Selected environment">
+        ENV: <span class="env-pill">{{ env }}</span>
+      </div>
+    </div>
+  
+    <!-- Dashboard group -->
+    <button class="group" type="button" (click)="toggleDashboard()">
+      <div class="group__left">
+        <span class="icon" aria-hidden="true">
+          <img src="icons/dashboard.svg" alt="" />
+        </span>
+  
+        <span class="group__label">Dashboard</span>
+      </div>
+  
+      <span class="arrow" [class.arrow--open]="isOpen" aria-hidden="true">
+        <img src="icons/chevron-down.svg" alt="" />
+      </span>
+    </button>
+  
+    <!-- Collapsible menu -->
+    <div class="menu" *ngIf="isOpen && !isCollapsed">
+      <button
+        class="menu__item"
+        type="button"
+        (click)="go('/app/create-api')"
+        [class.active]="isActive('/app/create-api')"
+      >
+        Create API
+      </button>
+  
+      <button
+        class="menu__item"
+        type="button"
+        (click)="go('/app/manage-apis')"
+        [class.active]="isActive('/app/manage-apis')"
+      >
+        Manage APIs
+      </button>
+  
+      <button
+        class="menu__item"
+        type="button"
+        (click)="go('/app/subscriptions')"
+        [class.active]="isActive('/app/subscriptions')"
+      >
+        Subscriptions
+      </button>
+  
+      <!-- ADMIN only -->
+      <button
+        class="menu__item"
+        type="button"
+        *ngIf="isAdmin"
+        (click)="go('/app/approvals')"
+        [class.active]="isActive('/app/approvals/apis')"
+      >
+        Approvals
+      </button>
+    </div>
+  </aside>
+  
