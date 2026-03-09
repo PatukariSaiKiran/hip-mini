@@ -104,7 +104,7 @@ exports.listApis = async (req, res) => {
   }
 };
 
-// ✅ GET /apis/:apiId
+//  GET /apis/:apiId
 exports.getApiByApiId = async (req, res) => {
   try {
     const api = await Api.findOne({ apiId: req.params.apiId });
@@ -121,7 +121,7 @@ exports.getApiByApiId = async (req, res) => {
   }
 };
 
-// ✅ PATCH /apis/:apiId (ADMIN)
+//  PATCH /apis/:apiId (ADMIN)
 // only editable fields
 exports.updateApiByApiId = async (req, res) => {
   try {
@@ -147,7 +147,7 @@ exports.updateApiByApiId = async (req, res) => {
   }
 };
 
-// ✅ DELETE /apis/:apiId (ADMIN) -> soft delete
+//  DELETE /apis/:apiId (ADMIN) -> soft delete
 exports.deleteApiByApiId = async (req, res) => {
   try {
     const api = await Api.findOne({ apiId: req.params.apiId });

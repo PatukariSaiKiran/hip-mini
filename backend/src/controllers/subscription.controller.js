@@ -6,7 +6,7 @@ function toInt(v, fb) {
   return Number.isNaN(n) ? fb : n;
 }
 
-// ✅ POST /subscriptions (USER creates request)
+//  POST /subscriptions (USER creates request)
 exports.createSubscription = async (req, res) => {
   try {
     const { apiId, reason } = req.body || {};
@@ -40,7 +40,7 @@ exports.createSubscription = async (req, res) => {
   }
 };
 
-// ✅ GET /subscriptions
+// GET /subscriptions
 // USER -> only their subscriptions
 // ADMIN -> all subscriptions
 exports.listSubscriptions = async (req, res) => {
@@ -98,7 +98,7 @@ exports.listSubscriptions = async (req, res) => {
   };
   
 
-// ✅ PATCH /subscriptions/:id/cancel (USER cancels only their PENDING)
+//  PATCH /subscriptions/:id/cancel (USER cancels only their PENDING)
 exports.cancelSubscription = async (req, res) => {
   try {
     const sub = await Subscription.findById(req.params.id);

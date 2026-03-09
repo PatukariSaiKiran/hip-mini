@@ -22,7 +22,7 @@ exports.listSubscriptionApprovals = async (req, res) => {
 
     const filter = {};
 
-    // ✅ status=ALL => no filter
+    // status=ALL => no filter
     if (status !== "ALL" && ["PENDING", "ACTIVE", "REJECTED", "CANCELLED"].includes(status)) {
       filter.status = status;
     }
@@ -121,7 +121,7 @@ exports.listApiApprovals = async (req, res) => {
 
     const filter = {};
 
-    // ✅ status=ALL => no filter
+    // status=ALL => no filter
     if (status !== "ALL" && ["DRAFT", "ACTIVE", "REJECTED", "DELETED"].includes(status)) {
       filter.status = status;
     }
@@ -171,7 +171,7 @@ exports.approveApi = async (req, res) => {
     api.status = "ACTIVE";
     api.updatedBy = req.user.userId;
 
-    // ✅ governance tracking
+    // governance tracking
     api.decisionBy = req.user.userId;
     api.decisionAt = new Date();
     api.decisionReason = req.body?.decisionReason || "";
@@ -197,7 +197,7 @@ exports.rejectApi = async (req, res) => {
     api.status = "REJECTED";
     api.updatedBy = req.user.userId;
 
-    // ✅ governance tracking
+    //  governance tracking
     api.decisionBy = req.user.userId;
     api.decisionAt = new Date();
     api.decisionReason = req.body?.decisionReason || "Rejected by admin";

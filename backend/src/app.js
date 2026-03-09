@@ -7,13 +7,13 @@ const subscriptionRoutes = require("./routes/subscription.routes");
 const approvalsRoutes = require("./routes/approvals.routes");
 const app = express();
 
-// ✅ middlewares
+//  middlewares
 app.use(cors());
 app.use(express.json());
 
-// ✅ health route (test server)
+//  health route (test server)
 app.get("/health", (req, res) => {
-  res.json({ status: "OK", message: "HIP-MINI backend is running ✅" });
+  res.json({ status: "OK", message: "HIP-MINI backend is running " });
 });
 
 app.use("/auth", authRoutes);

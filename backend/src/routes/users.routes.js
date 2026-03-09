@@ -3,7 +3,7 @@ const router = require("express").Router();
 const auth = require("../middleware/auth.middleware");
 const User = require("../models/user.model"); // adjust path if your model name is different
 const authorizeRoles = require("../middleware/role.middleware");
-// ✅ GET /users/me (protected)
+//  GET /users/me (protected)
 router.get("/me", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select("-password");
@@ -14,7 +14,7 @@ router.get("/me", auth, async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-// ✅ Example: ADMIN only route (to test roles)
+// Example: ADMIN only route (to test roles)
 router.get("/", auth, authorizeRoles("ADMIN"), async (req, res) => {
     try {
       const users = await User.find().select("-password");
